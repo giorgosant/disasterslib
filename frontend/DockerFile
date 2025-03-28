@@ -1,0 +1,19 @@
+FROM node:18
+
+WORKDIR /app/
+COPY . /app
+
+# Install dependencies
+RUN npm install
+
+# Apply the patch using patch-package
+RUN npx patch-package
+
+# Build the React app
+RUN npm run build
+
+# Install the `serve` package globally to serve the built files
+RUN npm install -g serve
+
+# Use `serve` to serve the React app from the `build` directory
+ENTRYPOINT ["serve", "-s", "build", "-l", "3000"]

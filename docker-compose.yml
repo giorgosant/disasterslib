@@ -1,0 +1,23 @@
+services:
+  disasterslib-frontend:
+    build:
+      context: ./frontend
+      dockerfile: DockerFile
+    ports:
+      - "3001:3000"
+    depends_on:
+      - disasterslib-backend
+
+  disasterslib-backend:
+    build:
+      context: ./backend
+      dockerfile: DockerFile
+    ports:
+      - "5001:5000"
+    environment:
+      PORT: 5000
+      DB_USER: "antoniou"
+      DB_HOST: "147.102.112.115"
+      DB_DATABASE: "gr_disasters_lib"
+      DB_PASSWORD: "#Antoniou2O24"
+      DB_PORT: 5864

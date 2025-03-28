@@ -1,0 +1,505 @@
+/* CSS Variables for theme and sizing */
+:root {
+  --font-family: Arial, sans-serif;
+  --primary-color: #587d56; /* Softer muted green */
+  --primary-hover: #4c8c64; /* Slightly brighter but balanced */
+  --secondary-color: #ffffff;
+  --background-color: #f5f5f5; /* Light neutral background */
+  --sidebar-bg: #4f6d5b; /* More subtle green for sidebar */
+  --header-font-size: 2rem;
+  --button-font-size: 16px;
+  --border-color: #ccc; /* Slightly softer gray */
+  --table-header-bg: #5c5c5c; /* More neutral dark gray */
+  --table-header-color: #fff;
+  --success-color: #4caf50; /* More vibrant success green */
+  --error-color: #d9534f; /* Slightly muted red */
+}
+
+/* Universal box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------
+   Base Styles & Reset
+--------------------------------------------- */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  height: 100%;
+}
+
+/* --------------------------------------------
+   App Container & Layout
+--------------------------------------------- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.header {
+  padding: 10px 20px;
+  font-size: var(--header-font-size);
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+}
+
+.main-section {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  height: calc(100vh - 80px); /* Adjust if header height changes */
+}
+
+/* --------------------------------------------
+   Sidebar
+--------------------------------------------- */
+.sidebar {
+  width: 300px;
+  margin: 10px;
+  margin-top: 0px;
+  padding: 15px;
+  padding-top: 0px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevents overflow */
+  position: relative;
+  height: calc(100vh - 0px); /* Adjusted for header & margins */
+  max-height: 100%;
+}
+
+.sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.filter-group {
+  margin-bottom: 0px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.filter-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Space between filters */
+}
+
+.filter-group input,
+.filter-group select {
+  width: 130px;
+  padding: 4px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+/* Distance Range Slider Box */
+.distance-slider-box {
+  margin-top: 15px;
+  padding: 0px;
+  border-radius: 5px;
+  accent-color: #151f1a;
+}
+
+/* Distance Range Label */
+.distance-slider-box label {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Distance Range Slider */
+.distance-slider-box input {
+  width: 100%;
+}
+
+/* Graph Legend Container */
+.graph-legend {
+  flex-grow: 1; /* Takes the remaining space in the sidebar */
+  overflow-y: auto; /* Scroll if content overflows */
+  max-height: calc(100% - 10px);
+  flex-direction: column;
+  bottom: 10px;
+  background: #f8f9fa; /* Light gray background */
+  border-radius: 5px;
+  padding: 10px;
+  padding-top: 0px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333; /* Dark text for readability */
+  line-height: 1.4;
+  border: 1px solid #ddd; /* Subtle border */
+}
+
+/* Graph Legend Sections */
+.legend-section {
+  margin-bottom: 0px;
+}
+
+/* Graph Legend Titles */
+.graph-legend h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #222;
+  text-align: center;
+}
+
+.legend-section h4 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #2A6475;
+}
+
+/* Graph Legend Text */
+.graph-legend p {
+  margin: 2px 0;
+  font-size: 13px;
+}
+
+/* Bold Labels */
+.graph-legend strong {
+  font-weight: bold;
+  color: #0a2849;
+}
+
+
+/* --------------------------------------------
+   Main Content & View Area
+--------------------------------------------- */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.view-selector {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 10;
+  background: #ffffff;
+  height: 40px;
+}
+
+/* --------------------------------------------
+   Button Styles
+--------------------------------------------- */
+/* Base button styles */
+.button,
+.active-button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  font-size: var(--button-font-size);
+  cursor: pointer;
+  outline: none;
+}
+
+.search-button {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-size: var(--button-font-size);
+  font-family: var(--font-family);
+  padding: 5px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.search-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.search-button:active {
+  transform: scale(0.98);
+}
+
+.search-button:disabled {
+  background-color: #96be8c;
+  cursor: not-allowed;
+}
+
+.button {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+.active-button {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.button:not(:disabled):hover {
+  background-color: #e0e0e0;
+}
+
+/* Export button */
+.export-button {
+  background-color: #243119;
+  color: #fff;
+}
+
+.button.export-button:hover {
+  background-color: #629460;
+}
+
+.export-button:disabled {
+  background-color: #96be8c;
+  cursor: not-allowed;
+}
+
+.table-button:disabled,
+.graph-button:disabled {
+  background-color: #d3d3d3;
+  color: #888888;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------
+   Map/Graph View Containers
+--------------------------------------------- */
+.view-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  margin: 10px 10px 0 0; /* top and right margins */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.map-container,
+.graph-view-container {
+  width: 100%;
+  height: calc(100vh - 200px);
+}
+
+/* --------------------------------------------
+   Table Styling
+--------------------------------------------- */
+/* --------------------------------------------
+   Table Styling (Smaller version)
+--------------------------------------------- */
+.table-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  min-height: 0;
+}
+
+.table-wrapper {
+  flex-grow: 1;
+  overflow: auto;
+  max-height: 100%;
+  min-height: 0;
+}
+
+.disaster-events-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;  /* Adjust the minimum width */
+}
+
+.disaster-events-table thead {
+  background-color: var(--table-header-bg);
+  color: var(--table-header-color);
+  font-weight: bold;
+  font-size: 0.875rem;  /* Smaller font size */
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.disaster-events-table th,
+.disaster-events-table td {
+  border: 1px solid var(--border-color);
+  padding: 6px;  /* Reduced padding */
+  text-align: left;
+  min-width: 100px;  /* Reduced minimum width */
+  font-size: 0.875rem;  /* Smaller font size */
+}
+
+.selected-event {
+  background-color: #d8d7f8 !important;
+}
+
+/* Optional: Reduce the font size further for specific cases */
+.disaster-events-table.smaller th,
+.disaster-events-table.smaller td {
+  font-size: 0.75rem;  /* Even smaller font size for the "smaller" class */
+  padding: 4px;  /* Further reduced padding */
+}
+
+/* --------------------------------------------
+   Import View Styling
+--------------------------------------------- */
+/* Main Container */
+.import-view {
+  padding: 30px;
+  background-color: #f7f9fc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  width: 90%;
+  max-width: 900px;
+  height: auto;
+}
+
+/* Title and Instructions */
+h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Fields List Styling */
+.import-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.import-fields ul {
+  flex: 1;
+  min-width: 280px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.import-fields li {
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.import-fields li strong {
+  color: #2e2e2e;
+  font-weight: bold;
+}
+
+/* File Input Styling */
+.import-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.upload-label:hover {
+  background-color: #0056b3;
+}
+
+.upload-button {
+  padding: 12px 25px;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 15px;
+}
+
+.upload-button:hover {
+  background-color: #218838;
+}
+
+.upload-button:disabled {
+  background-color: #c3e6cb;
+  cursor: not-allowed;
+}
+
+/* Feedback Message Styling */
+.success {
+  color: #28a745;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+/* Loading Spinner */
+.upload-button[disabled]::after {
+  content: "";
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #28a745;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------
+   Success & Error Message Styling
+--------------------------------------------- */
+.success {
+  color: var(--success-color);
+  margin-top: 10px;
+}
+
+.error {
+  color: var(--error-color);
+  margin-top: 10px;
+}
